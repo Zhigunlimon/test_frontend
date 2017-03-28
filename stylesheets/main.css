@@ -1,0 +1,198 @@
+h1, h3 {
+  font-family: 'Montserrat', sans-serif; }
+
+h2, h4, h5, h6 {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 600;
+  color: #000; }
+
+ul, p, input, select, li {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400; }
+
+h1 {
+  font-size: 40px;
+  color: #4dbb83; }
+
+h2 {
+  font-size: 30px; }
+
+h3 {
+  font-size: 20px;
+  color: #4fafb2; }
+
+h4 {
+  font-size: 20px; }
+
+h5 {
+  font-size: 14px; }
+
+h6 {
+  font-size: 12px; }
+
+.btn-group {
+  list-style-type: none; }
+  .btn-group li {
+    margin-bottom: 40px; }
+
+.btn {
+  border: 1px solid #4fafb2;
+  padding: 10px;
+  background: #4fafb2;
+  border-radius: 10px;
+  box-shadow: 3px 3px 0px #439497;
+  color: #fff;
+  text-decoration: none; }
+  .btn.small {
+    font-size: 12px; }
+  .btn.medium {
+    font-size: 14px; }
+  .btn.large {
+    font-size: 16px; }
+  .btn:hover {
+    background: #72bfc2;
+    box-shadow: 3px 3px 0px #4fafb2;
+    border-color: #72bfc2; }
+  .btn:active {
+    background: #439497;
+    border-color: #439497; }
+
+.options-form {
+  margin: 100px 0 100px; }
+
+select, input[type="text"], input[type="search"] {
+  width: 250px;
+  height: 30px;
+  border: 1px solid #000;
+  border-radius: 5px;
+  padding-left: 10px; }
+
+select:focus, input:focus {
+  outline: none; }
+
+.select-form select {
+  background: transparent;
+  border: none;
+  font-size: 14px;
+  padding: 10px;
+  border: 2px solid #000;
+  font-size: 16px;
+  height: 50px;
+  width: 268px;
+  outline: none; }
+  .select-form select:hover {
+    background: #d9d9d9; }
+  .select-form select:active {
+    background: transparent; }
+
+.select2.select2-container.select2-container--default {
+  width: 268px;
+  background: transparent;
+  border: none;
+  font-size: 14px;
+  padding: 10px;
+  border: 2px solid #000 !important;
+  font-size: 16px;
+  height: 50px;
+  width: 268px;
+  outline: none;
+  border-radius: 8px; }
+
+.select2-container--default .select2-selection--single {
+  background-color: none;
+  border: none;
+  border-radius: none;
+  outline: none; }
+
+.select2.select2-container.select2-container--default.select2-container--below.select2-container--open {
+  z-index: 99999; }
+
+.select2-dropdown.select2-dropdown--below {
+  margin-top: -3.6rem;
+  width: 285px !important;
+  margin: -3.6rem -9px; }
+
+.select2-search.select2-search--dropdown {
+  margin-top: 4rem; }
+
+.select2-container--default .select2-search--dropdown .select2-search__field {
+  height: 35px;
+  border-radius: 5px;
+  border: 2px solid #aaa; }
+
+.select2-container--default .select2-results__option--highlighted[aria-selected] {
+  background-color: #4dbb83; }
+
+.arrow-open {
+  background-image: image-url("arrow-open.jpg"); }
+
+.arrow-close {
+  background-image: image-url("arrow-close.jpg"); }
+
+.arrow-open, .arrow-close {
+  height: 60%;
+  left: -18%;
+  margin-left: -4px;
+  margin-top: -2px;
+  position: absolute;
+  top: 50%;
+  width: 100%; }
+
+.bla {
+  width: 18rem; }
+
+b[role="presentation"], .select2-selection__arrow {
+  visibility: none; }
+  b[role="presentation"] i, .select2-selection__arrow i {
+    visibility: visible; }
+
+.options-form {
+  width: 260px; }
+  .options-form .options--container {
+    margin-top: 5px;
+    display: none;
+    display: block;
+    width: 100%;
+    border: 1px #d9d9d9 solid;
+    border-radius: 5px;
+    box-shadow: 0.8px 5px 14.5px 0px rgba(153, 153, 153, 0.68); }
+    .options-form .options--container #opts_search {
+      width: 95%;
+      display: flex;
+      margin: 8px auto;
+      border-color: #d9d9d9; }
+
+.option--active {
+  background-color: #4dbb83;
+  color: #fff; }
+
+.options-list {
+  list-style-type: none;
+  margin: 0;
+  padding: 0; }
+  .options-list li {
+    padding: 10px; }
+  .options-list li:hover {
+    background-color: #4dbb83;
+    color: #fff; }
+
+.option--highlighted {
+  background-color: #4dbb83;
+  color: #fff; }
+
+.items {
+  display: inline-flex; }
+
+.item {
+  background: #4dbb83;
+  border: 1px solid #4dbb83;
+  margin: 0 2px;
+  border-radius: 10px;
+  width: 40px;
+  height: 40px;
+  color: #fff; }
+
+.item.active {
+  position: relative; }
+
+/*# sourceMappingURL=main.css.map */
