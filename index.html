@@ -38,9 +38,11 @@
       <div id="auto_result"></div>
 
       <div class="options--container" data-open="true" id="op">
-        <span class="options--search">
-          <input type="search" name="q" id="opts_search" />
-        </span>
+        <form>
+          <span class="options--search">
+            <input type="search" autocomplete=off onchange='{this.form.submit};' name="q" id="opts_search" />
+          </span>
+        </form>
 
         <span class="options--results"></span>
       </div>

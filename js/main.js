@@ -1,4 +1,6 @@
 $(document).ready(function() {
+  const sort = "sort";
+  const shuffle = "shuffle";
 
   // simple input
   var input = $('#input_text');
@@ -47,16 +49,17 @@ $(document).ready(function() {
 
   var opts_field = $("#autocomplete_example");
   var opts_search = $('#opts_search');
+  var opts_wrap = $('.options--container');
 
   opts_field.val(opts[0]);
 
   opts_field.focus(function() {
-    $('.options--container').show();
+    opts_wrap.show();
   });
 
   $("body").click(function(e) {
     if ((e.target.id !== ('autocomplete_example')) && (e.target.id !== ('opts_search')) ) {
-      $('.options--container').hide();
+      opts_wrap.hide();
     }
   });
 
@@ -72,6 +75,24 @@ $(document).ready(function() {
     changeInput($(this).val());
   });
 
+  opts_search.on('keyup keypress', function(e) {
+    var key = e.keyCode || e.which;
+    if (key === 13) {
+      e.preventDefault();
+
+      if ($.inArray($(this).val().toLowerCase(), opts) > -1) {
+        opts_field.val($(this).val());
+        opts_wrap.hide();
+        opts_search.val('');
+      }
+
+      else {
+        return false;
+      }
+    }
+  });
+
+
   function optsList(arr) {
     return "<ul class='options-list'>" +
       arr.map(function(opt) {
@@ -80,8 +101,11 @@ $(document).ready(function() {
     "</ul>"
   }
 
-  $('.options-list > li').click(function() {
+  $('li').click(function() {
+    console.log($(this).html());
+
     opts_field.empty().val($(this).html());
+
     $('.options-list > li.option--active').removeClass('option--active');
     $(this).addClass('option--active');
 
@@ -93,8 +117,6 @@ $(document).ready(function() {
     $(".option--highlighted").removeClass();
     $(this).addClass("option--highlighted");
   });
-
-
 
   // pivot algorithm
   function swap(items, firstIndex, secondIndex){
@@ -144,6 +166,15 @@ $(document).ready(function() {
     return items;
   }
 
+  function shuffleOptions(arr) {
+    for (var i = arr.length - 1; i > 0; i--) {
+      var j = Math.floor(Math.random() * (i + 1));
+      var temp = arr[i];
+      arr[i] = arr[j];
+      arr[j] = temp;
+    }
+    return arr;
+  }
 
   // Animated items
 
@@ -156,46 +187,74 @@ $(document).ready(function() {
 
 
   $('#options_submit').click(function() {
+    opt = opts_field.val();
+    console.log(opt);
+    switch (opt) {
+      case 'sort':
+        sortAnimation();
+        break;
+      case 'shuffle':
+        shuffleAnimation();
+    }
+  });
+
+  function sortAnimation() {
     var a = arr.slice();
     var result = quickSort(a, 0, arr.length - 1);
 
-    $.each(result, function(index, item) {
-      if (item < arr[index]) {
-        $(`.item:contains(${arr[index]})`).animate({
-           top: "-20"
-        }, 1000, function(){}).addClass('active');
-      }
-    });
-
-    setTimeout(function(){
-      $('.item').removeAttr('style').removeClass('active');
-
+    setTimeout(function() {
       $.each(result, function(index, item) {
+        if (item < arr[index]) {
+          $(`.item:contains(${arr[index]})`).animate({
+             top: "-20"
+          }, 300, function(){}).addClass('active');
+        }
+      });
+
+      setTimeout(function(){
+        $('.item').animate({
+           top: "0"
+        }, 300, function(){}).addClass('active');
+        
+        //$('.item').removeAttr('style').removeClass('active');
+        $('.item').animate({ opacity: 0}, 300, function() {
+          $.each(result, function(index, item) {
+            $(`[data-id="${index}"] > .item`).html(item);
+          });
+        });
+        setTimeout(function() {
+          $('.item').css({ opacity: 1}, 100, function(){});
+          $('.item').animate({
+             top: "-20"
+          }, 1000, function(){}).addClass('active');
+
+          setTimeout(function() {
+            $('.item').animate({
+               top: "0"
+            }, 5000, function(){});
+          }, 1);
+        }, 1000);
+      }, 2000);
+    }, 2000);
+  }
+
+  function shuffleAnimation() {
+    setTimeout(function() {
+      $.each(shuffleOptions(arr), function(index, item) {
         $(`[data-id="${index}"] > .item`).html(item);
       });
 
+      $('.item').animate({
+         top: "-20"
+      }, 300, function(){}).addClass('active');
+
       setTimeout(function() {
         $('.item').animate({
-           top: "-20"
-        }, 1000, function(){}).addClass('active');
+           top: "0"
+        }, 200);
 
-        setTimeout(function() {
-          $('.item.active').removeClass('active').removeAttr('style');
+      }, 500);
 
-        }, 5000);
-      }, 1000);
-    }, 3000);
-  });
-
-  function sortAnimation(res) {
-    var result = res.slice();
-
-    $.each(result, function(index, item) {
-      setTimeout($(this), 5000);
-
-      if (item < arr[index]) {
-        $(`[data-id="${index}"] > .item`).html(item);
-      }
-    });
+    }, 300);
   }
 });

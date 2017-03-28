@@ -155,7 +155,8 @@ b[role="presentation"], .select2-selection__arrow {
     width: 100%;
     border: 1px #d9d9d9 solid;
     border-radius: 5px;
-    box-shadow: 0.8px 5px 14.5px 0px rgba(153, 153, 153, 0.68); }
+    box-shadow: 0.8px 5px 14.5px 0px rgba(153, 153, 153, 0.68);
+    display: none; }
     .options-form .options--container #opts_search {
       width: 95%;
       display: flex;
@@ -194,5 +195,8 @@ b[role="presentation"], .select2-selection__arrow {
 
 .item.active {
   position: relative; }
+
+#output2 {
+  text-align: center; }
 
 /*# sourceMappingURL=main.css.map */
