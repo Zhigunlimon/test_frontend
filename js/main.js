@@ -3,10 +3,10 @@ Foundation.Orbit.defaults.dataSwipe = true;
 
 var opts_field = $("#autocomplete_example");
 var opts_search = $('#opts_search');
-var opts_wrap = $('.options-container');
+var opts_wrap = $('.options--container');
 
 $(document).ready(function() {
-  var sort = "sort";
+  var sort = "sort";   ###### не вижу чтобы ты юзал эти переменные, не надо их обьявлять.
   var shuffle = "shuffle";
 
   $submit = $('#options_submit');
@@ -15,7 +15,7 @@ $(document).ready(function() {
   var input = $('#input_text');
 
   $('#output').on('click', function(e){
-    if(input.val() !== '') {
+    if(input.val() !== '') {    ###### можно сделать более просто сравнение !input.val()
       var text = input.val();
       $('.output').append(`<div class="small-6 medium-4 column panel">${text}</div>`);
       input.val('');
@@ -25,10 +25,10 @@ $(document).ready(function() {
   // autocomplete input
   var opts = ['sort', 'shuffle'];
 
-  $('.options-results').append(optsList(opts));
-  $('.options-list > li:first').addClass('option-active');
+  $('.options--results').append(optsList(opts));
+  $('.options-list > li:first').addClass('option--active');
 
-  var active = $('.option-active');
+  var active = $('.option--active');
 
   function matchOptions(input) {
     var exp = new RegExp(input.split('').join('\\w*').replace(/\W/, ""), 'i');
@@ -43,8 +43,8 @@ $(document).ready(function() {
     var res = matchOptions(val);
     $('.options-list > li').remove();
     $('.options-list').append(optsFiltered(res));
-    $('.options-list > li').removeClass('option-active option-highlighted');
-    $('.options-list').find(`li:contains('${res[0]}')`).addClass('option-active option-highlighted');
+    $('.options-list > li').removeClass('option--active option--highlighted');
+    $('.options-list').find(`li:contains('${res[0]}')`).addClass('option--active option--highlighted');
   }
 
   function optsFiltered(arr) {
@@ -54,7 +54,6 @@ $(document).ready(function() {
       }).join(' ')
     );
   }
-
 
   opts_field.val(opts[0]);
 
@@ -100,18 +99,17 @@ $(document).ready(function() {
     }
   });
 
-  function optsList(arr) {
-    return "<ul class='options-list'>" +
-      arr.map(function(opt) {
+  function optsList(arr) {            #### такие вещи я бы лучше делал фрагментами(создаешь фрагмент в виртуальном доме. добавляешь ему чайлдов, 
+    return "<ul class='options-list'>" +   #### а потом аппендишь весь фрагмент на странице - это быстрее.
+      arr.map(function(opt) {               #   https://davidwalsh.name/documentfragment          
         return `<li>${opt}</li>`;
       }).join(' ') +
     "</ul>"
   }
 
-
   $('.options-list li').hover(function() {
-    $(".option-highlighted").removeClass();
-    $(this).addClass("option-highlighted");
+    $(".option--highlighted").removeClass();
+    $(this).addClass("option--highlighted");
   });
 
   // pivot algorithm
@@ -122,8 +120,8 @@ $(document).ready(function() {
   }
 
   function partition(items, left, right) {
-    var pivot   = items[Math.floor((right + left) / 2)],
-        i       = left,
+    var pivot   = items[Math.floor((right + left) / 2)],     ### в таких вещах я не силен, и не в курсе как там такое происходит 
+        i       = left,                                      ### в js, но по моему i и j - это прошлый век, поищи как сделать без них.
         j       = right;
 
     while (i <= j) {
@@ -261,10 +259,10 @@ $(document).ready(function() {
 $(document).on('click','.options-list > li',function(){
   opts_field.empty().val($(this).html());
 
-  $('.options-list > li.option-active').removeClass('option-active');
-  $(this).addClass('option-active');
+  $('.options-list > li.option--active').removeClass('option--active');
+  $(this).addClass('option--active');
 
-  $(".option-highlighted").removeClass();
-  $(this).addClass("option-highlighted");
+  $(".option--highlighted").removeClass();
+  $(this).addClass("option--highlighted");
 });
 
