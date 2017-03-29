@@ -101,7 +101,6 @@ $(document).ready(function() {
     }
   });
 
-
   function optsList(arr) {
     return "<ul class='options-list'>" +
       arr.map(function(opt) {
@@ -118,7 +117,6 @@ $(document).ready(function() {
 
   // pivot algorithm
   function swap(items, firstIndex, secondIndex){
-
     var temp = items[firstIndex];
     items[firstIndex] = items[secondIndex];
     items[secondIndex] = temp;
@@ -182,7 +180,6 @@ $(document).ready(function() {
   $.each(arr, function(i, item) {
       output.append(`<div data-id=${i}><button type="button" class="item">${item}</button></div>`);
   });
-
 
   $submit.click(function() {
     $(this).prop("disabled", true);
