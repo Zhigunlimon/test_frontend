@@ -3,7 +3,7 @@ Foundation.Orbit.defaults.dataSwipe = true;
 
 var opts_field = $("#autocomplete_example");
 var opts_search = $('#opts_search');
-var opts_wrap = $('.options--container');
+var opts_wrap = $('.options-container');
 
 $(document).ready(function() {
   var sort = "sort";
@@ -22,14 +22,13 @@ $(document).ready(function() {
     }
   });
 
-
   // autocomplete input
   var opts = ['sort', 'shuffle'];
 
-  $('.options--results').append(optsList(opts));
-  $('.options-list > li:first').addClass('option--active');
+  $('.options-results').append(optsList(opts));
+  $('.options-list > li:first').addClass('option-active');
 
-  var active = $('.option--active');
+  var active = $('.option-active');
 
   function matchOptions(input) {
     var exp = new RegExp(input.split('').join('\\w*').replace(/\W/, ""), 'i');
@@ -44,8 +43,8 @@ $(document).ready(function() {
     var res = matchOptions(val);
     $('.options-list > li').remove();
     $('.options-list').append(optsFiltered(res));
-    $('.options-list > li').removeClass('option--active option--highlighted');
-    $('.options-list').find(`li:contains('${res[0]}')`).addClass('option--active option--highlighted');
+    $('.options-list > li').removeClass('option-active option-highlighted');
+    $('.options-list').find(`li:contains('${res[0]}')`).addClass('option-active option-highlighted');
   }
 
   function optsFiltered(arr) {
@@ -111,8 +110,8 @@ $(document).ready(function() {
 
 
   $('.options-list li').hover(function() {
-    $(".option--highlighted").removeClass();
-    $(this).addClass("option--highlighted");
+    $(".option-highlighted").removeClass();
+    $(this).addClass("option-highlighted");
   });
 
   // pivot algorithm
@@ -262,10 +261,10 @@ $(document).ready(function() {
 $(document).on('click','.options-list > li',function(){
   opts_field.empty().val($(this).html());
 
-  $('.options-list > li.option--active').removeClass('option--active');
-  $(this).addClass('option--active');
+  $('.options-list > li.option-active').removeClass('option-active');
+  $(this).addClass('option-active');
 
-  $(".option--highlighted").removeClass();
-  $(this).addClass("option--highlighted");
+  $(".option-highlighted").removeClass();
+  $(this).addClass("option-highlighted");
 });
 
