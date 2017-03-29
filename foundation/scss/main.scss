@@ -1,3 +1,10 @@
+/*
+  01. general styles
+  02. autocomplete field
+  03. pivot
+*/
+
+
 $light-green: #72c99d;
 $green: #4dbb83;
 $medium-green: #389a6a;
@@ -17,8 +24,10 @@ $secondary-color: #4fafb2;
 $black: #000;
 
 $input-width: 250px;
-html body {
+$input-height: 40px;
 
+// 01. general styles
+html body {
   @media (min-width: 640px) and (max-width: 1200px) {
     background: $almost-white;
   }
@@ -29,43 +38,33 @@ html body {
     background: $gray;
   }
 
+  .main-row {
+    margin-top: 30px;
+    margin-bottom: 100px;
+  }
+
   h1, h3 {
     font-family: 'Montserrat', sans-serif;
     font-weight: 600;
   }
-
   h2, h4, h5, h6 {
     font-family: 'Open Sans', sans-serif;
     font-weight: 600;
     color: $black;
   }
-
-  ul, p, input, select, li {
-    font-family: 'Open Sans', sans-serif;
-    font-weight: 400;
-  }
-
-
   h1 {
-    font-size: 40px;
     color: $green;
-  }
-  h2 {
-    font-size: 30px;
   }
   h3 {
     font-size: 20px;
     color: $teal;
   }
-  h4 {
-    font-size: 20px;
+  ul, input, li, button {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 400;
+    outline: none;
   }
-  h5 {
-    font-size: 14px;
-  }
-  h6 {
-    font-size: 12px
-  }
+
   .btn-group {
     list-style-type: none;
     display: inline-flex;
@@ -74,7 +73,6 @@ html body {
       margin-right: 10px;
     }
   }
-
   .btn {
     border: 1px solid #4fafb2;
     padding: 10px;
@@ -105,91 +103,48 @@ html body {
       border-color: $medium-teal;
     }
   }
-
   a {
     color: $green;
     text-decoration: underline;
+    &:visited {
+      color: $green;
+    }
     &:hover{
       color: $light-green;
     }
-    &:active{
+    &:active {
       color: $dark-green;
     }
   }
 }
 
-.options-form {
+// 02. autocomplete field
+input#autocomplete_example {
+  background-image: url('../img/arrow-open.jpg');
+  background-repeat: no-repeat;
+  background-position: right;
+  &.open {
+    background-image: url(../img/arrow-close.jpg);
+  }
 }
 
-select, input[type="text"], input[type="search"] {
+input[type="text"], input[type="search"] {
    width: $input-width;
-   height: 30px;
-   border: 1px solid $black;
+   border: 2px solid $black;
    border-radius: 5px;
    padding-left: 10px;
-
-}
-select:focus, input:focus {
-  outline: none;
-}
-.select-form select{
-   background: transparent;
-   border: none;
-   font-size: 14px;
-   padding: 10px;
-   border: 2px solid $black;
-   font-size: 16px;
-   height: 50px;
-   width: 268px;
-   outline: none;
-   &:hover {
-    background: $gray;
-   }
-   &:active {
-    background: transparent;
-   }
- }
-
-.select2.select2-container.select2-container--default {
-  width: 268px;
-  background: transparent;
-  border: none;
-  font-size: 14px;
-  padding: 10px;
-  border: 2px solid $black !important;
-  font-size: 16px;
-  height: 50px;
-  width: 268px;
-  outline: none;
-  border-radius: 8px;
+   height: $input-height;
 }
 
-.select2-container--default .select2-selection--single {
-    background-color: none;
-    border: none;
-    border-radius: none;
+.input-form input[type="text"]{
+  height: $input-height;
+  &:hover {
+    background-color: $gray;
+  }
+  &:focus {
     outline: none;
-}
-.select2.select2-container.select2-container--default.select2-container--below.select2-container--open {
-  z-index: 99999;
-}
-.select2-dropdown.select2-dropdown--below {
-  margin-top: -3.6rem;
-  width: 285px !important;
-  margin: -3.6rem -9px;
-}
-
-.select2-search.select2-search--dropdown {
-  margin-top: 4rem;
-}
-
-.select2-container--default .select2-search--dropdown .select2-search__field {
-    height: 35px;
-    border-radius: 5px;
-    border: 2px solid #aaa;
-}
-.select2-container--default .select2-results__option--highlighted[aria-selected] {
-  background-color: $green;
+    background-color: $white !important;
+  }
 }
 
 .arrow-open {
@@ -198,29 +153,11 @@ select:focus, input:focus {
 .arrow-close {
   background-image: image-url('arrow-close.jpg');
 }
-.arrow-open, .arrow-close {
-  height: 60%;
-  left: -18%;
-  margin-left: -4px;
-  margin-top: -2px;
-  position: absolute;
-  top: 50%;
-  width: 100%;
-}
 
-.bla {
-  width: 18rem;
-}
-
-b[role="presentation"], .select2-selection__arrow {
-  visibility: none;
-  i {
-    visibility: visible;
-  }
-}
 .options-form {
-  margin: 50px 0;
+  margin: 0 0 50px;
   width: 260px;
+
   .options--container {
     position: relative;
     right: 5px;
@@ -241,11 +178,10 @@ b[role="presentation"], .select2-selection__arrow {
       border-color: $gray;
     }
   }
-
 }
 
 .option--active {
-  background-color: #4dbb83;
+  background-color: $green;
   color: $white;
 }
 
@@ -255,28 +191,29 @@ b[role="presentation"], .select2-selection__arrow {
   padding: 0;
   li {
     padding: 10px;
-  }
-  li:hover {
-    background-color: $green;
-    color: $white;
+    &:hover {
+      background-color: $green;
+      color: $white;
+    }
   }
 }
 
 .option--highlighted {
-  background-color: #4dbb83;
+  background-color: $green;
   color: $white;
 }
-body {
+
+// 03. pivot
+#pivot {
+  text-align: center;
   .items {
     display: inline-flex;
-  }
-  .items button {
   }
 
   .item {
     background: $green;
     border: 1px solid $green;
-    margin: 0 2px;
+    margin: 0 5px;
     border-radius: 10px;
     width: 40px;
     height: 40px;
@@ -285,8 +222,8 @@ body {
   .item.active {
     position: relative;
   }
+}
 
-  #output2 {
-    text-align: center;
-  }
+.output {
+  margin-top: 2rem;
 }
