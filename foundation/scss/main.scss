@@ -1,3 +1,5 @@
+@import 'settings';
+
 /*
   01. general styles
   02. autocomplete field
@@ -226,4 +228,19 @@ input[type="text"], input[type="search"] {
 
 .output {
   margin-top: 2rem;
+}
+
+.panel {
+  padding: 10px;
+  text-align: center;
+  background: $light-gray;
+  border: 1px solid #eeeeee;
+  border-radius: 5px;
+  box-shadow: -2px 2px 0px #d8d8d8;
+  margin-bottom: 20px;
+  &:hover {
+    background: $gray;
+    border: 1px solid $gray;
+    box-shadow: -2px 2px 0px $dark-gray;
+  }
 }
