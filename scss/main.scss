@@ -2,7 +2,7 @@
 
 /*  01. general styles
     02. autocomplete field
-    03. pivot 
+    03. pivot
 */
 
 $light-green: #72c99d;
@@ -52,13 +52,10 @@ html body {
     font-weight: 600;
     color: $black;
   }
-  h1 {
-    color: $green;
-  }
-  h3 {
-    font-size: 20px;
-    color: $teal;
-  }
+
+  h1 { color: $green; }
+  h3 { font-size: 20px; color: $teal; }
+
   ul, input, li, button {
     font-family: 'Open Sans', sans-serif;
     font-weight: 400;
@@ -163,8 +160,7 @@ input[type="text"], input[type="search"] {
     right: 5px;
     top: -12px;
     margin-top: 5px;
-    display: none;
-    display: block;
+
     width: 100%;
     border: 1px $gray solid;
     border-radius: 5px;
