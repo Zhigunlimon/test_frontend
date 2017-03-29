@@ -1,15 +1,25 @@
+$(document).foundation();
+Foundation.Orbit.defaults.dataSwipe = true;
+
+var opts_field = $("#autocomplete_example");
+var opts_search = $('#opts_search');
+var opts_wrap = $('.options--container');
+
 $(document).ready(function() {
-  const sort = "sort";
-  const shuffle = "shuffle";
+  var sort = "sort";
+  var shuffle = "shuffle";
+
+  $submit = $('#options_submit');
 
   // simple input
   var input = $('#input_text');
 
-  $('#output').click(function(e){
-    var text = input.val();
-
-    $('.output').append(`<p>${text}</p>`);
-    input.val('');
+  $('#output').on('click', function(e){
+    if(input.val() !== '') {
+      var text = input.val();
+      $('.output').append(`<div class="small-6 medium-4 column panel">${text}</div>`);
+      input.val('');
+    }
   });
 
 
@@ -32,7 +42,6 @@ $(document).ready(function() {
 
   function changeInput(val) {
     var res = matchOptions(val);
-    //opts_search.val(res[0]);
     $('.options-list > li').remove();
     $('.options-list').append(optsFiltered(res));
     $('.options-list > li').removeClass('option--active option--highlighted');
@@ -47,9 +56,6 @@ $(document).ready(function() {
     );
   }
 
-  var opts_field = $("#autocomplete_example");
-  var opts_search = $('#opts_search');
-  var opts_wrap = $('.options--container');
 
   opts_field.val(opts[0]);
 
@@ -60,6 +66,7 @@ $(document).ready(function() {
   $("body").click(function(e) {
     if ((e.target.id !== ('autocomplete_example')) && (e.target.id !== ('opts_search')) ) {
       opts_wrap.hide();
+      opts_field.removeClass('open');
     }
   });
 
@@ -69,6 +76,7 @@ $(document).ready(function() {
 
   opts_field.click(function(e) {
     opts_search.focus();
+    $(this).addClass('open');
   });
 
   opts_search.on('keydown', function() {
@@ -84,6 +92,7 @@ $(document).ready(function() {
         opts_field.val($(this).val());
         opts_wrap.hide();
         opts_search.val('');
+        opts_field.removeClass('open');
       }
 
       else {
@@ -101,19 +110,8 @@ $(document).ready(function() {
     "</ul>"
   }
 
-  $('.options-list li').click(function() {
-    console.log($(this).html());
 
-    opts_field.empty().val($(this).html());
-
-    $('.options-list > li.option--active').removeClass('option--active');
-    $(this).addClass('option--active');
-
-    $(".option--highlighted").removeClass();
-    $(this).addClass("option--highlighted");
-  });
-
-  $('.options-list > li').hover(function() {
+  $('.options-list li').hover(function() {
     $(".option--highlighted").removeClass();
     $(this).addClass("option--highlighted");
   });
@@ -178,17 +176,16 @@ $(document).ready(function() {
 
   // Animated items
 
-  var output = $(".items");
-  var arr = [14, 25, 255, 12, 13, 24];
+  var output = $("#pivot .items");
+  var arr = [14, 25, 255, 26, 13, 24];
 
   $.each(arr, function(i, item) {
       output.append(`<div data-id=${i}><button type="button" class="item">${item}</button></div>`);
   });
 
 
-  $('#options_submit').click(function() {
-    console.log('hello');
-    $(this).attr("disabled", "disabled");
+  $submit.click(function() {
+    $(this).prop("disabled", true);
     opt = opts_field.val();
 
     switch (opt) {
@@ -218,12 +215,12 @@ $(document).ready(function() {
            top: "0"
         }, 300, function(){}).addClass('active');
 
-        //$('.item').removeAttr('style').removeClass('active');
         $('.item').animate({ opacity: 0}, 300, function() {
           $.each(result, function(index, item) {
             $(`[data-id="${index}"] > .item`).html(item);
           });
         });
+
         setTimeout(function() {
           $('.item').css({ opacity: 1}, 100, function(){});
           $('.item').animate({
@@ -234,7 +231,9 @@ $(document).ready(function() {
             $('#options_submit').removeAttr('disabled');
             $('.item').animate({
                top: "0"
-            }, 5000, function(){});
+            }, 5000, function(){
+              $submit.removeAttr("disabled");
+            });
           }, 1);
         }, 1000);
       }, 2000);
@@ -254,10 +253,22 @@ $(document).ready(function() {
       setTimeout(function() {
         $('.item').animate({
            top: "0"
-        }, 200);
-
+        }, 200, function() {
+          $submit.removeAttr("disabled");
+        });
       }, 500);
 
     }, 300);
   }
 });
+
+$(document).on('click','.options-list > li',function(){
+  opts_field.empty().val($(this).html());
+
+  $('.options-list > li.option--active').removeClass('option--active');
+  $(this).addClass('option--active');
+
+  $(".option--highlighted").removeClass();
+  $(this).addClass("option--highlighted");
+});
+
